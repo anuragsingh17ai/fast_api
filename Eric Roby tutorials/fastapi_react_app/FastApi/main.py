@@ -9,7 +9,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 origins = [
-    "http://localhost:3000",
+    "http://localhost:5173/",
+    "http://localhost:5173",
 
 ]
 
@@ -52,7 +53,7 @@ async def create_transaction(transaction: TransactionBase, db: db_dependency):
     db.refresh(db_transaction)
     return db_transaction 
 
-@app.get("/transactions", response_model=List[TransactionModel])
+@app.get("/transactions/", response_model=List[TransactionModel])
 async def read_transactions(db: db_dependency, skip:int =0, limit:int=100):
     transaction = db.query(models.Transaction).offset(skip).limit(limit).all()
     return transaction
