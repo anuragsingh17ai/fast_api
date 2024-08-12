@@ -23,4 +23,5 @@ class Todo(Base):
     title = Column(String)
     description = Column(String)
     priority = Column(Integer)
+    complete = Column(Boolean)
     owner_id = Column(Integer, ForeignKey("users.id"))
